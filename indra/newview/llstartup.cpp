@@ -89,6 +89,7 @@
 #include "message.h"
 #include "v3math.h"
 
+#include "alcinematicmode.h"
 #include "alstreaminfo.h"
 #include "llagent.h"
 #include "llagentbenefits.h"
@@ -2350,6 +2351,8 @@ bool idle_startup()
 		}
 
 		display_startup();
+
+		ALCinematicMode::init();
 
 		// wait precache-delay and for agent's avatar or a lot longer.
 		if ((timeout_frac > 1.f) && isAgentAvatarValid())

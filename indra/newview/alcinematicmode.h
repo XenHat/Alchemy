@@ -25,8 +25,13 @@
 class ALCinematicMode
 {
 	static bool _enabled;
+	static bool _disable_chat_toasts;
 public:
+	static void init();
 	static void toggle();
 	static bool isEnabled() { return _enabled; };
+	static bool disableChatToasts() { return _disable_chat_toasts; };
+
+	static void onDisableChatToastsChanged();
 };
 #endif

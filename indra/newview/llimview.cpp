@@ -77,6 +77,7 @@
 #include "rlvactions.h"
 #include "rlvcommon.h"
 // [/RLVa:KB]
+#include "alcinematicmode.h"
 
 #include <array>
 
@@ -155,6 +156,11 @@ static void on_avatar_name_cache_toast(const LLUUID& agent_id,
 									   const LLAvatarName& av_name,
 									   LLSD msg)
 {
+	// HACK: We should avoid calling the function in the first place
+	if (ALCinematicMode::isEnabled() && ALCinematicMode::disableChatToasts())
+	{
+		return;
+	}
 	LLSD args;
 	args["MESSAGE"] = msg["message"];
 	args["TIME"] = msg["time"];

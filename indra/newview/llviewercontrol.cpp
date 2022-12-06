@@ -83,6 +83,7 @@
 // [/RLVa:KB]
 #include "llfloaterimsessiontab.h"
 #include "llviewerchat.h"
+#include "alcinematicmode.h"
 
 // Third party library includes
 #include <boost/algorithm/string.hpp>
@@ -889,7 +890,6 @@ void settings_setup_listeners()
 
     setting_setup_signal_listener(gSavedPerAccountSettings, "AvatarHoverOffsetZ", handleAvatarHoverOffsetChanged);
 // [RLVa:KB] - Checked: 2015-12-27 (RLVa-1.5.0)
-	setting_setup_signal_listener(gSavedSettings, std::string(RlvSettingNames::Main), RlvSettings::onChangedSettingMain);
 // [/RLVa:KB]
 	setting_setup_signal_listener(gSavedSettings, "AlchemyHudTextFadeDistance", LLHUDText::onFadeSettingsChanged);
 	setting_setup_signal_listener(gSavedSettings, "AlchemyHudTextFadeRange", LLHUDText::onFadeSettingsChanged);
@@ -903,6 +903,8 @@ void settings_setup_listeners()
     setting_setup_signal_listener(gSavedSettings, "RenderHiddenSelections", handleRenderHiddenSelection);
 
    	gSavedSettings.getControl("AlchemyCinematicModeHideHoverText")->getSignal()->connect(boost::bind(&LLHUDText::onHideInCinematicModeChanged));
+	gSavedSettings.getControl("AlchemyCinematicModeDisableChatToasts")->getSignal()->connect(boost::bind(&ALCinematicMode::onDisableChatToastsChanged));
+
 
 }
 
