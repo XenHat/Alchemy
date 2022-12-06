@@ -132,6 +132,7 @@ public:
 	static void        refreshAllObjectText(EObjectTextFilter eObjFilter = OTF_NONE);
 // [/RLVa:KB]
 	static void onFadeSettingsChanged();
+	static void onHideInCinematicModeChanged();
 protected:
 	LLHUDText(const U8 type);
 
@@ -174,6 +175,7 @@ private:
 // [/RLVa:KB]
 
 	static BOOL    sDisplayText ;
+	static bool    sHideInCinematicMode;
 	static std::set<LLPointer<LLHUDText> > sTextObjects;
 	static std::vector<LLPointer<LLHUDText> > sVisibleTextObjects;
 	static std::vector<LLPointer<LLHUDText> > sVisibleHUDTextObjects;

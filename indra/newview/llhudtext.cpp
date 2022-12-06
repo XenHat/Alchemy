@@ -64,6 +64,7 @@ std::set<LLPointer<LLHUDText> > LLHUDText::sTextObjects;
 std::vector<LLPointer<LLHUDText> > LLHUDText::sVisibleTextObjects;
 std::vector<LLPointer<LLHUDText> > LLHUDText::sVisibleHUDTextObjects;
 BOOL LLHUDText::sDisplayText = TRUE ;
+bool LLHUDText::sHideInCinematicMode = FALSE;
 
 bool lltextobject_further_away::operator()(const LLPointer<LLHUDText>& lhs, const LLPointer<LLHUDText>& rhs) const
 {
@@ -230,6 +231,10 @@ void LLHUDText::setString(const std::string &text_utf8)
 // [RLVa:KB] - Checked: RLVa-2.0.3
 	// NOTE: setString() is called for debug and map beacons as well
 
+	if (ALCinematicMode::isEnabled() && sHideInCinematicMode)
+	{
+		return;
+	}
 	if (RlvActions::isRlvEnabled())
 	{
 		std::string text(text_utf8);
@@ -678,6 +683,18 @@ void LLHUDText::onFadeSettingsChanged()
 		{
 			text->mFadeDistance = gSavedSettings.getF32("AlchemyHudTextFadeDistance");
 			text->mFadeRange = gSavedSettings.getF32("AlchemyHudTextFadeRange");
+		}
+	}
+}
+
+void LLHUDText::onHideInCinematicModeChanged()
+{
+	sHideInCinematicMode = gSavedSettings.getBool("AlchemyCinematicModeHideHoverText");
+	for (LLHUDText* text : sTextObjects)
+	{
+		if (text)
+		{
+			text->setString(text->mObjText);
 		}
 	}
 }
