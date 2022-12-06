@@ -231,7 +231,7 @@ void LLHUDText::setString(const std::string &text_utf8)
 // [RLVa:KB] - Checked: RLVa-2.0.3
 	// NOTE: setString() is called for debug and map beacons as well
 
-	if (ALCinematicMode::isEnabled() && sHideInCinematicMode)
+	if (sHideInCinematicMode && ALCinematicMode::isEnabled())
 	{
 		return;
 	}
