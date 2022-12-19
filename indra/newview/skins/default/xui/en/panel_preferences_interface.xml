@@ -121,6 +121,28 @@
      type="string"
      length="1"
      follows="left|top"
+     height="10"
+     layout="topleft"
+     left="30"
+     name="Cinematic Mode:"
+     mouse_opaque="false"
+     top_pad="10"
+     width="300">
+    Cinematic Mode:
+  </text>
+ <check_box
+    control_name="AlchemyCinematicModeDisableChatToasts"
+    height="16"
+    label="Disable Chat Toasts in Cinematic Mode"
+    layout="topleft"
+    left_delta="5"
+    name="AlchemyCinematicModeDisableChatToasts"
+    top_pad="10"
+    width="256">
+  <text
+     type="string"
+     length="1"
+     follows="left|top"
      height="18"
      layout="topleft"
      left="30"
