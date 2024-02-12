@@ -20,11 +20,13 @@
 #include "llviewerprecompiledheaders.h"
 
 #include "alcinematicmode.h"
+#include "llagentcamera.h"
 #include "llchicletbar.h"
 #include "llhudtext.h"
 #include "llmoveview.h"
 #include "llnavigationbar.h"
 #include "llviewerwindow.h"
+#include "llviewercontrol.h"
 
 bool ALCinematicMode::_enabled = false;
 bool ALCinematicMode::_disable_chat_toasts = false;
