@@ -41,7 +41,7 @@ bool isEnabled()
 // static
 bool disableChatToasts()
 {
-  return _disable_chat_toasts;
+  return _enabled && _disable_chat_toasts;
 }
 
 // static
