@@ -20,6 +20,7 @@
 #include "llviewerprecompiledheaders.h"
 
 #include "alcinematicmode.h"
+
 #include "llagentcamera.h"
 #include "llchicletbar.h"
 #include "llhudtext.h"
