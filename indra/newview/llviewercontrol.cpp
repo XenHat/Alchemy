@@ -902,8 +902,7 @@ void settings_setup_listeners()
     setting_setup_signal_listener(gSavedSettings, "UseDisplayNames", handleDisplayNamesOptionChanged);
     setting_setup_signal_listener(gSavedSettings, "AppearanceCameraMovement", handleAppearanceCameraMovementChanged);
     setting_setup_signal_listener(gSavedSettings, "RenderHiddenSelections", handleRenderHiddenSelection);
-
-   	gSavedSettings.getControl("AlchemyCinematicModeHideHoverText")->getSignal()->connect(boost::bind(&LLHUDText::onHideInCinematicModeChanged));
+    setting_setup_signal_listener(gSavedSettings, "AlchemyCinematicModeHideHoverText", LLHUDText::onHideInCinematicModeChanged);
 
 
 }
