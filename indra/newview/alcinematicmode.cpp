@@ -30,7 +30,6 @@
 #include "llviewercontrol.h"
 
 bool ALCinematicMode::_enabled = false;
-bool ALCinematicMode::_disable_chat_toasts = false;
 
 //static
 bool ALCinematicMode::isEnabled()
@@ -41,7 +40,8 @@ bool ALCinematicMode::isEnabled()
 // static
 bool ALCinematicMode::disableChatToasts()
 {
-  return _enabled && _disable_chat_toasts;
+  static LLCachedControl<bool> disable_chat_toasts(gSavedSettings, "AlchemyCinematicModeDisableChatToasts", false);
+  return _enabled && disable_chat_toasts;
 }
 
 // static
@@ -72,11 +72,3 @@ void ALCinematicMode::toggle()
 	}
 }
 
-void ALCinematicMode::onDisableChatToastsChanged() {
-	_disable_chat_toasts = gSavedSettings.getBool("AlchemyCinematicModeDisableChatToasts");
-	LL_WARNS() << "Chat toasts disabled: " << _disable_chat_toasts << LL_ENDL;
-}
-
-void ALCinematicMode::init() {
-	_disable_chat_toasts = gSavedSettings.getBool("AlchemyCinematicModeDisableChatToasts");
-}

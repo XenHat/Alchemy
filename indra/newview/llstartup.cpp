@@ -2352,8 +2352,6 @@ bool idle_startup()
 
 		display_startup();
 
-		ALCinematicMode::init();
-
 		// wait precache-delay and for agent's avatar or a lot longer.
 		if ((timeout_frac > 1.f) && isAgentAvatarValid())
 		{

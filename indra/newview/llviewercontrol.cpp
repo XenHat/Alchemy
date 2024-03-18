@@ -904,7 +904,6 @@ void settings_setup_listeners()
     setting_setup_signal_listener(gSavedSettings, "RenderHiddenSelections", handleRenderHiddenSelection);
 
    	gSavedSettings.getControl("AlchemyCinematicModeHideHoverText")->getSignal()->connect(boost::bind(&LLHUDText::onHideInCinematicModeChanged));
-	gSavedSettings.getControl("AlchemyCinematicModeDisableChatToasts")->getSignal()->connect(boost::bind(&ALCinematicMode::onDisableChatToastsChanged));
 
 
 }
