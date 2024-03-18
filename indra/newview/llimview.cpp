@@ -156,7 +156,6 @@ static void on_avatar_name_cache_toast(const LLUUID& agent_id,
 									   const LLAvatarName& av_name,
 									   LLSD msg)
 {
-	// HACK: We should avoid calling the function in the first place
 	if (ALCinematicMode::disableChatToasts())
 	{
 		return;
