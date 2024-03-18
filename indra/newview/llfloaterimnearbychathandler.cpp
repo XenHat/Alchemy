@@ -49,6 +49,8 @@
 #include "llrootview.h"
 #include "lllayoutstack.h"
 
+#include "alcinematicmode.h"
+
 // [RLVa:KB] - Checked: RLVa-2.0.0
 #include "rlvactions.h"
 #include "rlvcommon.h"
@@ -653,6 +655,11 @@ void LLFloaterIMNearbyChatHandler::processChat(const LLChat& chat_msg,
 
 	if(chat_msg.mText.empty())
 		return;//don't process empty messages
+
+  if (ALCinematicMode::disableChatToasts())
+  {
+    return;
+  }
 
 // [RLVa:KB] - Checked: 2010-04-20 (RLVa-1.2.0f) | Modified: RLVa-1.2.0f
 	if (RlvActions::isRlvEnabled())
