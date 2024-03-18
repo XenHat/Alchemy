@@ -112,6 +112,9 @@
 #include "rlvmodifiers.h"
 // [/RLVa:KB]
 
+//AL
+#include "alcinematicmode.h"
+
 //BD
 #include "llfloaterreg.h"
 #include "bdposingmotion.h"
@@ -3267,7 +3270,7 @@ void LLVOAvatar::idleUpdateNameTag(const LLVector3& root_pos_last)
 		fRlvShowAvName = (fRlvShowAvTag) && (RlvActions::canShowName(RlvActions::SNC_DEFAULT, getID()));
 	}
 // [/RLVa:KB]
-	bool visible_chat = use_chat_bubbles && (mChats.size() || mTyping);
+	bool visible_chat = !ALCinematicMode::disableChatToasts() && use_chat_bubbles && (mChats.size() || mTyping);
 	bool render_name =	visible_chat ||
 // [RLVa:KB] - Checked: RLVa-2.0.1
 		((fRlvShowAvTag) &&
