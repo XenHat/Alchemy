@@ -33,13 +33,13 @@ bool ALCinematicMode::_enabled = false;
 bool ALCinematicMode::_disable_chat_toasts = false;
 
 //static
-bool isEnabled()
+bool ALCinematicMode::isEnabled()
 {
   return _enabled;
 }
 
 // static
-bool disableChatToasts()
+bool ALCinematicMode::disableChatToasts()
 {
   return _enabled && _disable_chat_toasts;
 }
