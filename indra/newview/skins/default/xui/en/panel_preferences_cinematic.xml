@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <panel
  border="true"
- follows="left|top|right|bottom"
+ follows="left|top|right"
  height="408"
  label="Interface"
  layout="topleft"
@@ -10,8 +10,10 @@
  top="1"
   width="517">
 <text
+  follows="left|top|right"
+  layout="topleft"
   name="cinematic_hide_section"
-  left="5"
+  left="15"
   top="10"
   height="16">
   When in Cinematic Mode, Hide the following elements:
@@ -22,7 +24,7 @@
     height="16"
     label="Bubble Chat, IM and Local chat toasts"
     layout="topleft"
-    left="15"
+    left="20"
     name="chat_toasts"
     top_pad="10"
    width="256"/>
