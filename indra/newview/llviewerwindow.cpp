@@ -228,6 +228,8 @@
 #include "rlvhandler.h"
 // [/RLVa:KB]
 
+#include "alcinematicmode.h"
+
 #if LL_WINDOWS
 #include <tchar.h> // For Unicode conversion methods
 #include "llwindowwin32.h" // For AltGr handling
@@ -2944,6 +2946,8 @@ void LLViewerWindow::draw()
 		}
 
 		// Draw tool specific overlay on world
+    if (!ALCinematicMode::isEnabled())
+    {
 		LLToolMgr::getInstance()->getCurrentTool()->draw();
 
 		if( gAgentCamera.cameraMouselook() )
@@ -2951,6 +2955,7 @@ void LLViewerWindow::draw()
 			drawMouselookInstructions();
 			stop_glerror();
 		}
+    }
 
 		// Draw all nested UI views.
 		// No translation needed, this view is glued to 0,0
