@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<panel
+ border="true"
+ follows="left|top|right|bottom"
+ height="408"
+ label="Interface"
+ layout="topleft"
+ left="102"
+ name="Interface panel"
+ top="1"
+  width="517">
+<text
+  name="cinematic_hide_section"
+  left="5"
+  top="10"
+  height="16">
+  When in Cinematic Mode, Hide the following elements:
+</text>
+
+ <check_box
+    control_name="AlchemyCinematicModeDisableChatToasts"
+    height="16"
+    label="Bubble Chat, IM and Local chat toasts"
+    layout="topleft"
+    left="15"
+    name="chat_toasts"
+    top_pad="10"
+   width="256"/>
+  <check_box
+    control_name="AlchemyCinematicModeHideHoverText"
+    height="16"
+    initial_value="true"
+    label="Floating text"
+    layout="topleft"
+    left_delta="0"
+    name="floating_text"
+    top_pad="5"
+    width="256">
+    <check_box.commit_callback
+      function="Pref.RenderOptionUpdate" />
+  </check_box>
+</panel>

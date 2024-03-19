@@ -186,6 +186,11 @@ https://accounts.secondlife.com/change_email/
          label="Interface"
          layout="topleft"
          name="interface" />
+         <panel
+          filename="panel_preferences_cinematic.xml"
+          label="Cinematic Mode"
+          layout="topleft"
+          name="cinematic" />
         <!--<panel
          filename="panel_preferences_grids.xml"
          label="Grids"
