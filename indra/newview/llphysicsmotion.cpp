@@ -514,7 +514,21 @@ BOOL LLPhysicsMotion::onUpdate(F32 time)
         const F32 behavior_gravity = getParamValue(GRAVITY);
         const F32 behavior_spring = getParamValue(SPRING);
         const F32 behavior_gain = getParamValue(GAIN);
-        const F32 behavior_damping = getParamValue(DAMPING);
+
+        static F32 temporary_dampening = 0;
+        // NOTE: These settings are temporary and for debugging purposes
+        static LLCachedControl<bool> new_avatar_physics(gSavedSettings, "AlchemyNewAvatarPhysics", false, "Use experimental avatar physics changes");
+        if (new_avatar_physics)
+        {
+            static LLCachedControl<F32> physics_dampening_mult(gSavedSettings, "AvatarPhysicsDampingMult", 5.0, "DEBUG: Controls the strength of the avatar physics dampening factor");
+            temporary_dampening = physics_dampening_mult;
+        }
+        else
+        {
+            temporary_dampening = 1.0;
+        }
+        // IGNORE: DAMPING is a typo and it is too late to change it beside editing every asset
+        const F32 behavior_dampening = getParamValue(DAMPING) * temporary_dampening;
         const F32 behavior_drag = getParamValue(DRAG);
         F32 behavior_maxeffect = getParamValue(MAX_EFFECT);
 
@@ -597,7 +611,7 @@ BOOL LLPhysicsMotion::onUpdate(F32 time)
 
         // Damping is a restoring force that opposes the current velocity.
         // F = -kv
-        const F32 force_damping = -behavior_damping * mVelocity_local;
+        const F32 force_dampening = -behavior_dampening * mVelocity_local;
 
         // Drag is a force imparted by velocity (intuitively it is similar to wind resistance)
         // F = .5kv^2
@@ -606,7 +620,7 @@ BOOL LLPhysicsMotion::onUpdate(F32 time)
         const F32 force_net = (force_accel +
                        force_gravity +
                        force_spring +
-                       force_damping +
+                       force_dampening +
                        force_drag);
 
         //
@@ -717,15 +731,9 @@ BOOL LLPhysicsMotion::onUpdate(F32 time)
         mVelocity_local = velocity_new_local;
         mAccelerationJoint_local = acceleration_joint_local;
         mPosition_local = position_new_local;
-    }
-    mLastTime = time;
-    mPosition_world = joint->getWorldPosition();
-    mVelocityJoint_local = velocity_joint_local;
-
 
         /*
-          // Write out debugging info into a spreadsheet.
-          if (mFileWrite != NULL && is_self)
+          if (is_self)
           {
           fprintf(mFileWrite,"%f\t%f\t%f \t\t%f \t\t%f\t%f\t%f\t \t\t%f\t%f\t%f\t%f\t%f \t\t%f\t%f\t%f\n",
           position_new_local,
@@ -741,7 +749,7 @@ BOOL LLPhysicsMotion::onUpdate(F32 time)
           force_net,
           force_spring,
           force_accel,
-          force_damping,
+          force_dampening,
           force_drag,
 
           spring_length,
@@ -749,7 +757,11 @@ BOOL LLPhysicsMotion::onUpdate(F32 time)
           acceleration_joint_local
           );
           }
-        */
+*/
+    }
+    mLastTime = time;
+    mPosition_world = joint->getWorldPosition();
+    mVelocityJoint_local = velocity_joint_local;
 
         return update_visuals;
 }
